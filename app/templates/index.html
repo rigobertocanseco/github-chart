@@ -9,12 +9,13 @@
 
 
 <div class="columns is-mobile is-centered">
-<div class="column is-full-mobile is-two-thirds-tablet is-four-fifths-desktop is-half-widescreen is-half-fullhd">
+<div class="column is-full-mobile is-half-tablet is-half-desktop is-half-widescreen is-half-fullhd">
 <div class="box">
-<p class="title is-5">Mi Perfil de Gitub</p>
-<p class="subtitle">Lenguajes usados</p>
+<p class="title is-5">Mi Perfil de Github  <a class="is-small is-tex" href="https://github.com/rigobertocanseco">@rigobertocanseco</a></p>
+
+<p class="subtitle">Lenguajes Usados</p>
 <div id="piechart1" style="width: 640; height: 480px"></div>
-<p class="subtitle">Temas</p>
+<p class="subtitle">Temas de Interés</p>
 <div  class="tags" id="topics" ></div>
 </div>
 </div>
@@ -46,7 +47,7 @@
 
                 array[1].forEach(_ => {
                     var li = document.createElement("spam");
-                    li.setAttribute("class", "tag is-normal is-black")
+                    li.setAttribute("class", "tag is-medium is-link")
                     li.appendChild(document.createTextNode(_));
                     ul.appendChild(li);
                 })
