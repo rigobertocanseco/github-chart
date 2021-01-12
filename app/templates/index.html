@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'css/bulma.min.css') }}" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+
+
+
+<div class="columns is-mobile is-centered">
+<div class="column is-full-mobile is-two-thirds-tablet is-four-fifths-desktop is-half-widescreen is-half-fullhd">
+<div class="box">
+<p class="title is-5">Mi Perfil de Gitub</p>
+<p class="subtitle">Lenguajes usados</p>
+<div id="piechart1" style="width: 640; height: 480px"></div>
+<p class="subtitle">Temas</p>
+<div  class="tags" id="topics" ></div>
+</div>
+</div>
+</div>
+
+
+
+
+
+    <script src="{{ url_for('static', filename= 'js/github-chart.js') }}"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var github = new GithubChart("rigobertoCanseco", "adad12438fa11c6ff129e6452deca4b24da67e4d");
+            github.getLanguages().then(function (array) {
+                console.log(array)
+                var data1 = google.visualization.arrayToDataTable(array[0]);
+                var options1 = {
+   			 backgroundColor: 'hsl(217, 71%, 53%)',
+
+                };
+                var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
+                chart1.draw(data1, options1);
+
+                var ul = document.getElementById("topics");
+
+                array[1].forEach(_ => {
+                    var li = document.createElement("spam");
+                    li.setAttribute("class", "tag is-normal is-black")
+                    li.appendChild(document.createTextNode(_));
+                    ul.appendChild(li);
+                })
+
+            }).catch(function (val) {
+                console.log("error in GithubChart", val);
+            });
+        }
+    </script>
+
+    </body>
+</html>
