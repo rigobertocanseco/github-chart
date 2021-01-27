@@ -31,8 +31,7 @@
         }
 
         function drawChart() {
-
-            var github = new GithubChart(getUrlVars("user"), "adad12438fa11c6ff129e6452deca4b24da67e4d");
+            var github = new GithubChart(getUrlVars()["user"], "adad12438fa11c6ff129e6452deca4b24da67e4d");
             github.getLanguages().then(function (array) {
                 console.log(array)
                 var data1 = google.visualization.arrayToDataTable(array[0]);
