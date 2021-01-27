@@ -5,9 +5,6 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-
-
-
 <div class="columns is-mobile is-centered">
 <div class="column is-full-mobile is-half-tablet is-half-desktop is-half-widescreen is-half-fullhd">
 <div class="box">
@@ -20,19 +17,22 @@
 </div>
 </div>
 </div>
-
-
-
-
-
     <script src="{{ url_for('static', filename= 'js/github-chart.js') }}"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
 
+	function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
         function drawChart() {
 
-            var github = new GithubChart("rigobertoCanseco", "adad12438fa11c6ff129e6452deca4b24da67e4d");
+            var github = new GithubChart(getUrlVars("user"), "adad12438fa11c6ff129e6452deca4b24da67e4d");
             github.getLanguages().then(function (array) {
                 console.log(array)
                 var data1 = google.visualization.arrayToDataTable(array[0]);
@@ -47,7 +47,7 @@
 
                 array[1].forEach(_ => {
                     var li = document.createElement("spam");
-                    li.setAttribute("class", "tag is-medium is-link")
+                    li.setAttribute("class", "tag is-normal is-link")
                     li.appendChild(document.createTextNode(_));
                     ul.appendChild(li);
                 })
@@ -57,6 +57,5 @@
             });
         }
     </script>
-
     </body>
 </html>
